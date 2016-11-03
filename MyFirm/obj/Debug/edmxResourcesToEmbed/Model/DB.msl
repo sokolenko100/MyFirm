@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyFirmModelStoreContainer" CdmEntityContainer="MyFirmEntiti">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="MyFirmModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="cust_surName" ColumnName="cust_surName" />
+          <ScalarProperty Name="cust_address" ColumnName="cust_address" />
+          <ScalarProperty Name="cust_phone" ColumnName="cust_phone" />
+          <ScalarProperty Name="cust_email" ColumnName="cust_email" />
+          <ScalarProperty Name="cust_dateBirth" ColumnName="cust_dateBirth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomersOrders">
+      <EntityTypeMapping TypeName="MyFirmModel.CustomersOrders">
+        <MappingFragment StoreEntitySet="CustomersOrders">
+          <ScalarProperty Name="customersOrders_id" ColumnName="customersOrders_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="MyFirmModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_login" ColumnName="emp_login" />
+          <ScalarProperty Name="emp_password" ColumnName="emp_password" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="emp_surName" ColumnName="emp_surName" />
+          <ScalarProperty Name="emp_phone" ColumnName="emp_phone" />
+          <ScalarProperty Name="emp_email" ColumnName="emp_email" />
+          <ScalarProperty Name="emp_dateBirth" ColumnName="emp_dateBirth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="MyFirmModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="order_prodCount" ColumnName="order_prodCount" />
+          <ScalarProperty Name="order_dateils" ColumnName="order_dateils" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdersProducts">
+      <EntityTypeMapping TypeName="MyFirmModel.OrdersProducts">
+        <MappingFragment StoreEntitySet="OrdersProducts">
+          <ScalarProperty Name="ordersProducts_id" ColumnName="ordersProducts_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="MyFirmModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="prod_name" ColumnName="prod_name" />
+          <ScalarProperty Name="prod_dump" ColumnName="prod_dump" />
+          <ScalarProperty Name="prod_litter" ColumnName="prod_litter" />
+          <ScalarProperty Name="prod_oilness" ColumnName="prod_oilness" />
+          <ScalarProperty Name="prod_density" ColumnName="prod_density" />
+          <ScalarProperty Name="prod_bit" ColumnName="prod_bit" />
+          <ScalarProperty Name="prod_kernelImpurety" ColumnName="prod_kernelImpurety" />
+          <ScalarProperty Name="prod_protein" ColumnName="prod_protein" />
+          <ScalarProperty Name="prod_Price" ColumnName="prod_Price" />
+          <ScalarProperty Name="prod_Qty" ColumnName="prod_Qty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="MyFirmModel.Tasks">
+        <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="task_id" ColumnName="task_id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="task_name" ColumnName="task_name" />
+          <ScalarProperty Name="task_dateils" ColumnName="task_dateils" />
+          <ScalarProperty Name="task_status" ColumnName="task_status" />
+          <ScalarProperty Name="task_date" ColumnName="task_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

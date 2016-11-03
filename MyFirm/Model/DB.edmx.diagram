@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ced3f1d7e7624144a0d5390eedb21b1a" Name="Diagram1">
+        <EntityTypeShape EntityType="MyFirmModel.Customers" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.CustomersOrders" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.Employees" Width="1.5" PointX="5.375" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.Orders" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.OrdersProducts" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.Products" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyFirmModel.Tasks" Width="1.5" PointX="8" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="MyFirmModel.FK_Customer_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MyFirmModel.FK_OrdersCustomer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MyFirmModel.FK_CustomersOrder_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MyFirmModel.FK_Tasks_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="MyFirmModel.FK_ProductsOrder_id" ManuallyRouted="false" />
+        <AssociationConnector Association="MyFirmModel.FK_OrdersProduct_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

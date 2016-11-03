@@ -1,0 +1,247 @@
+﻿<Window x:Class="MyFirm.View.MainMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MyFirm.ViewModelComponent"
+        xmlns:converters="clr-namespace:MyFirm.Converter"
+        xmlns:vm="clr-namespace:MyFirm.Model"
+        Title="MainMenu" WindowStartupLocation="CenterScreen"  MinHeight="400" MinWidth="630" Height="400" Width="640">
+    <Window.DataContext>
+        <local:TabControlViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+            <ResourceDictionary>
+                <converters:OrdersProductsConverter x:Key="OrdersProductsConverter"/>
+                <converters:CustomersOrdersConverter x:Key="CustomersOrdersConverter"/>
+                <converters:EmployeesConverter x:Key="EmployeesConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid  Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <ToolBar  Grid.Row="0" VerticalAlignment="Stretch">
+            <Menu Width="35" HorizontalAlignment="Left" >
+                <MenuItem Header="File">
+                    <MenuItem Name="New_File" Header="New File"/>
+                    <MenuItem Header="Open File">
+                        <MenuItem Name="Create_File" Header="Create File"/>
+                        <MenuItem Name="Delete_File" Header="Delete File"/>
+                    </MenuItem>
+                    <MenuItem Header="Exit" Command="{Binding CommandExit}"/>
+                </MenuItem>
+            </Menu>
+            <Separator/>
+        </ToolBar>
+        <TabControl Grid.Row="1" Name="Tab"  Height="340" VerticalAlignment="Top">
+            <TabItem  Header="Employees" Name="TabItemEmployees" IsSelected="true"  DataContext="{Binding EmployeesViewModel}">
+                <TabItem.Content>
+                    <Grid Style="{StaticResource GridStyle}" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="EmployeesDataGrid" Grid.Column="0" IsReadOnly="True"
+                                  Grid.RowSpan="4" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedItemEmployees, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="First Name" Binding="{Binding emp_name}"/>
+                                <DataGridTextColumn Header="Last Name" Binding="{Binding emp_surName}"/>
+                                <DataGridTextColumn Header="DateBirth" Binding="{Binding emp_dateBirth}"/>
+                                <DataGridTextColumn Header="Phone" Binding="{Binding emp_phone}"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding emp_email}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Grid.Column="2" Grid.Row="0" Content="Add" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding AddCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding DeleteCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="2" Content="Change" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding ChangeCommand}" />
+                        <Button Grid.Column="2" Grid.Row="3" Content="Info" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding InfoCommand}"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Customers"  Name="TabItemCustomers"  DataContext="{Binding CustomersViewModel}">
+                <TabItem.Content>
+                    <Grid Style="{StaticResource GridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="CustomerDataGrid" Grid.Column="0" IsReadOnly="True"
+                                    Grid.RowSpan="4" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedItemCustomers, Mode=TwoWay}">
+                         <DataGrid.Columns>
+                             <DataGridTextColumn Header="First Name" Binding="{Binding cust_name}"/>
+                             <DataGridTextColumn Header="Last Name" Binding="{Binding cust_surName}"/>
+                             <DataGridTextColumn Header="Address" Binding="{Binding cust_address}"/>
+                             <DataGridTextColumn Header="Phone" Binding="{Binding cust_phone}"/>
+                             <DataGridTextColumn Header="Email" Binding="{Binding cust_email}"/>
+                             <DataGridTextColumn Header="DateBirth" Binding="{Binding cust_dateBirth}"/>
+                         </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Button Grid.Column="2" Grid.Row="0" Content="Add" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding AddCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding DeleteCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="2" Content="Change" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding ChangeCommand}" />
+                        <Button Grid.Column="2" Grid.Row="3" Content="Info" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding InfoCommand}"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Orders"  Name="TabItemOrders" DataContext="{Binding OrdersViewModel}">
+                <TabItem.Content>
+                    <Grid Style="{StaticResource GridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="OrdersDataGrid" Grid.Column="0" IsReadOnly="True"
+                                    Grid.RowSpan="4" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedItemOrders, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Customer" Binding="{Binding Converter={StaticResource CustomersOrdersConverter}, Path=.}"/>
+                                <DataGridTextColumn Header="Product" Binding="{Binding Converter={StaticResource OrdersProductsConverter}, Path=.}"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding order_status}"/>
+                                <DataGridTextColumn Header="Count" Binding="{Binding order_prodCount}"/>
+                                <DataGridTextColumn Header="Order Date" Binding="{Binding order_date}"/>
+                                <DataGridTextColumn Header="Deteils" Binding="{Binding order_dateils}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Grid.Column="2" Grid.Row="0" Content="Add" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding AddCommand}" />
+                        <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding DeleteCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="2" Content="Change" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding ChangeCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="3" Content="Info" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding InfoCommand}" />
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Products" Name="TabItemProducts" DataContext="{Binding ProductsViewModel}">
+                <TabItem.Content>
+                    <Grid Style="{StaticResource GridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="ProductDataGrid" Grid.Column="0" IsReadOnly="True"
+                                   Grid.RowSpan="4" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedItemProducts, Mode=TwoWay}">
+                        <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding prod_name}"/>
+                                <DataGridTextColumn Header="Dump" Binding="{Binding prod_dump}"/>
+                                <DataGridTextColumn Header="Litter" Binding="{Binding prod_litter}"/>
+                                <DataGridTextColumn Header="Oilness" Binding="{Binding prod_oilness}"/>
+                                <DataGridTextColumn Header="Density" Binding="{Binding prod_density}"/>
+                                <DataGridTextColumn Header="Impurety" Binding="{Binding prod_kernelImpurety}"/>
+                                <DataGridTextColumn Header="Protein" Binding="{Binding prod_protein}"/>
+                                <DataGridTextColumn Header="Price" Binding="{Binding prod_Price}"/>
+                                <DataGridTextColumn Header="Quantity" Binding="{Binding prod_Qty}"/>
+                                <DataGridTextColumn Header="Bit" Binding="{Binding prod_bit}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Grid.Column="2" Grid.Row="0" Content="Add" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding AddCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding DeleteCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="2" Content="Change" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding ChangeCommand}" />
+                        <Button Grid.Column="2" Grid.Row="3" Content="Info" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding InfoCommand}"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem Header="Tasks" Name="TabItemTasks" DataContext="{Binding TasksViewModel}">
+                <TabItem.Content>
+                    <Grid Style="{StaticResource GridStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="TasksDataGrid" Grid.Column="0" IsReadOnly="True"
+                                    Grid.RowSpan="4" AutoGenerateColumns="False"  SelectedItem="{Binding SelectedItemTasks, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Task name" Width="80"  Binding="{Binding task_name}"/>
+                                <DataGridTextColumn Header="Status" Width="80"  Binding="{Binding task_status}"/>
+                                <DataGridTextColumn Header="Employees" Binding="{Binding Converter={StaticResource EmployeesConverter}, Path=.}"/>
+                                <DataGridTextColumn Header="Task date" Width="80"  Binding="{Binding task_date}"/>
+                                <DataGridTextColumn Header="Dateils" Width="80"  Binding="{Binding task_dateils}"/>
+                               
+                                
+                                <!--<TextBlock  >
+                                              <Run Text="{Binding emp_name}"/>
+                                              <Run Text="   "/>
+                                              <Run Text="{Binding emp_surName}"/>
+                                </TextBlock>
+                                </DataGridTextColumn>-->
+                               
+                                <!--<DataGridTemplateColumn Header="Employees" IsReadOnly="True" >
+                                  
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate >
+                                            
+                                            <TextBox Name="EmployeesText" Width="80"  IsReadOnly="True" > Text="{Binding Path=Employees, Mode=TwoWay}">-->
+                                           <!-- <TextBox.Text>
+                                                <Binding Path="Employees"  ElementName="Employees">
+                                            
+                                                </Binding>
+                                              </TextBox.Text>
+                                            </TextBox>-->
+                                            <!--<TextBlock  >
+                                              <Run Text="{Binding emp_name}"/>
+                                              <Run Text="   "/>
+                                              <Run Text="{Binding emp_surName}"/>
+                                            </TextBlock>-->
+                                        <!--</DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>-->                              
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Grid.Column="2" Grid.Row="0" Content="Add" 
+                                Style="{StaticResource ButtonStyle}"  Command="{Binding AddCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="1" Content="Delete" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding DeleteCommand}"/>
+                        <Button Grid.Column="2" Grid.Row="2" Content="Change" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding ChangeCommand}" />
+                        <Button Grid.Column="2" Grid.Row="3" Content="Info" 
+                                Style="{StaticResource ButtonStyle}" Command="{Binding InfoCommand}"/>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
+

@@ -1,0 +1,100 @@
+﻿<Window x:Class="MyFirm.View.AddCustomers"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:loc="clr-namespace:MyFirm.AddViewModel"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       mc:Ignorable="d"
+      Title="AddCustomer" WindowStartupLocation="CenterScreen" Style="{StaticResource WindowsStyleToolWindow}" MinHeight="300" MinWidth="310" Height="300" Width="310" MaxHeight="300" MaxWidth="300">
+    <Window.DataContext>
+        <loc:AddCustomerViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource LableStyle}">Name</Label>
+        <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource LableStyle}">SurName</Label>
+        <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource LableStyle}">BirthDay</Label>
+        <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource LableStyle}">Phone</Label>
+        <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource LableStyle}">Email</Label>
+        <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource LableStyle}">Address</Label>
+        <TextBlock  Grid.Column="1" Grid.Row="0"  Text="Petya " Foreground="{StaticResource brushWatermarkForeground}" Style="{StaticResource TextBlockStyle}"
+                       Visibility="{Binding ElementName=Name, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <TextBox Name="Name" Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}"  BorderBrush="{StaticResource brushWatermarkBorder}">
+            <TextBox.Text>
+                <Binding Path="Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock  Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBlockStyle}"  Text="Petrov " Foreground="{StaticResource brushWatermarkForeground}"
+                       Visibility="{Binding ElementName=SurName, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox Name="SurName" Grid.Column="1" Grid.Row="1" Style="{StaticResource TextBoxStyle}" BorderBrush="{StaticResource brushWatermarkBorder}">
+            <TextBox.Text>
+                <Binding Path="SurName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <DatePicker Grid.Column="1" Grid.Row="2" Name="DateBirth"
+                    FirstDayOfWeek="Monday"
+                    ToolTip="Начальная дата"
+                    FontFamily="Calibri"
+                    DisplayDate="{Binding DateBirth}"
+                    SelectedDate="{Binding DateBirth}"
+                    HorizontalAlignment="Left" Margin="0,8,0,0"  VerticalAlignment="Top"/>
+        <TextBlock  Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBlockStyle}" Text="(098)8782143 " Foreground="{StaticResource brushWatermarkForeground}"
+                       Visibility="{Binding ElementName=Phone, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" Height="19"  />
+        <TextBox Name="Phone" Grid.Column="1" Grid.Row="3" Style="{StaticResource TextBoxStyle}" BorderBrush="{StaticResource brushWatermarkBorder}">
+            <TextBox.Text>
+                <Binding Path="Phone" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock  Grid.Column="1" Grid.Row="4"  Style="{StaticResource TextBlockStyle}"  Text="mail@gmail.com " Foreground="{StaticResource brushWatermarkForeground}"
+                       Visibility="{Binding ElementName=Email, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox Name="Email" Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}" BorderBrush="{StaticResource brushWatermarkBorder}">
+            <TextBox.Text>
+                <Binding Path="Email" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock  Grid.Column="1" Grid.Row="5" Style="{StaticResource TextBlockStyle}"  Text="Lenin St. Dnepr, Ukraine" Foreground="{StaticResource brushWatermarkForeground}"
+                       Visibility="{Binding ElementName=Address, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBox Name="Address" Grid.Column="1" Grid.Row="5" Style="{StaticResource TextBoxStyle}"  BorderBrush="{StaticResource brushWatermarkBorder}">
+            <TextBox.Text>
+                <Binding Path="Address" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Canvas Grid.Row="6" Grid.ColumnSpan="2">
+            <Button MinHeight="23" MinWidth="60" Canvas.Left="222" Canvas.Top="10"  Content="Cancel" Command="{Binding CenselAdd}"/>
+            <Button MinHeight="23" MinWidth="60" Canvas.Left="139" Canvas.Top="10" Content="OK" Command="{Binding  OkAdd}"/>
+        </Canvas>
+    </Grid>
+</Window>

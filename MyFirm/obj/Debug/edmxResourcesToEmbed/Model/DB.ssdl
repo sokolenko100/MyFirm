@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyFirmModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MyFirmModelStoreContainer">
+    <EntitySet Name="Customers" EntityType="MyFirmModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomersOrders" EntityType="MyFirmModel.Store.CustomersOrders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="MyFirmModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="MyFirmModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrdersProducts" EntityType="MyFirmModel.Store.OrdersProducts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="MyFirmModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tasks" EntityType="MyFirmModel.Store.Tasks" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Customer_Employees" Association="MyFirmModel.Store.FK_Customer_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomersOrder_id" Association="MyFirmModel.Store.FK_CustomersOrder_id">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="CustomersOrders" EntitySet="CustomersOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersCustomer_id" Association="MyFirmModel.Store.FK_OrdersCustomer_id">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomersOrders" EntitySet="CustomersOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersProduct_id" Association="MyFirmModel.Store.FK_OrdersProduct_id">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrdersProducts" EntitySet="OrdersProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsOrder_id" Association="MyFirmModel.Store.FK_ProductsOrder_id">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrdersProducts" EntitySet="OrdersProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tasks_Employees" Association="MyFirmModel.Store.FK_Tasks_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Tasks" EntitySet="Tasks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" />
+    <Property Name="cust_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cust_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="cust_surName" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="cust_address" Type="varchar" MaxLength="30" />
+    <Property Name="cust_phone" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="cust_email" Type="varchar" MaxLength="30" />
+    <Property Name="cust_dateBirth" Type="date" />
+  </EntityType>
+  <EntityType Name="CustomersOrders">
+    <Key>
+      <PropertyRef Name="customersOrders_id" />
+    </Key>
+    <Property Name="customersOrders_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="cust_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="emp_login" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="emp_password" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="emp_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="emp_surName" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="emp_phone" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="emp_email" Type="varchar" MaxLength="30" />
+    <Property Name="emp_dateBirth" Type="date" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_prodCount" Type="int" />
+    <Property Name="order_dateils" Type="varchar" MaxLength="100" />
+    <Property Name="order_status" Type="varchar" MaxLength="20" />
+    <Property Name="order_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrdersProducts">
+    <Key>
+      <PropertyRef Name="ordersProducts_id" />
+    </Key>
+    <Property Name="ordersProducts_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="prod_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="prod_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="prod_dump" Type="varchar" MaxLength="20" />
+    <Property Name="prod_litter" Type="varchar" MaxLength="12" />
+    <Property Name="prod_oilness" Type="varchar" MaxLength="12" />
+    <Property Name="prod_density" Type="varchar" MaxLength="12" />
+    <Property Name="prod_bit" Type="varchar" MaxLength="12" />
+    <Property Name="prod_kernelImpurety" Type="varchar" MaxLength="12" />
+    <Property Name="prod_protein" Type="varchar" MaxLength="12" />
+    <Property Name="prod_Price" Type="money" />
+    <Property Name="prod_Qty" Type="int" />
+  </EntityType>
+  <EntityType Name="Tasks">
+    <Key>
+      <PropertyRef Name="task_id" />
+    </Key>
+    <Property Name="task_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="task_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="task_dateils" Type="varchar" MaxLength="150" />
+    <Property Name="task_status" Type="varchar" MaxLength="20" />
+    <Property Name="task_date" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Customer_Employees">
+    <End Role="Employees" Type="MyFirmModel.Store.Employees" Multiplicity="0..1" />
+    <End Role="Customers" Type="MyFirmModel.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomersOrder_id">
+    <End Role="Orders" Type="MyFirmModel.Store.Orders" Multiplicity="0..1" />
+    <End Role="CustomersOrders" Type="MyFirmModel.Store.CustomersOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="CustomersOrders">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersCustomer_id">
+    <End Role="Customers" Type="MyFirmModel.Store.Customers" Multiplicity="0..1" />
+    <End Role="CustomersOrders" Type="MyFirmModel.Store.CustomersOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="cust_id" />
+      </Principal>
+      <Dependent Role="CustomersOrders">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersProduct_id">
+    <End Role="Products" Type="MyFirmModel.Store.Products" Multiplicity="0..1" />
+    <End Role="OrdersProducts" Type="MyFirmModel.Store.OrdersProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="prod_id" />
+      </Principal>
+      <Dependent Role="OrdersProducts">
+        <PropertyRef Name="prod_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsOrder_id">
+    <End Role="Orders" Type="MyFirmModel.Store.Orders" Multiplicity="0..1" />
+    <End Role="OrdersProducts" Type="MyFirmModel.Store.OrdersProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="order_id" />
+      </Principal>
+      <Dependent Role="OrdersProducts">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tasks_Employees">
+    <End Role="Employees" Type="MyFirmModel.Store.Employees" Multiplicity="0..1" />
+    <End Role="Tasks" Type="MyFirmModel.Store.Tasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="Tasks">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
