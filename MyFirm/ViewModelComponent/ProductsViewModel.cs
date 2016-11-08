@@ -78,7 +78,6 @@ namespace MyFirm.ViewModelComponent
       }
       private void AddMethod()
       {
-          IsChanged = false;
           this.CreateAddObjectAndSubscribeEventUnloaded();
           _addProduct.ShowDialog();
           IsAdd = true;

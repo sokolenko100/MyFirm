@@ -84,12 +84,8 @@ namespace MyFirm.ViewModelComponent
       }
       private void DeleteMethod()
       {
-          if (TasksViewModel._taskSelected!=null)
-          {
-              IsChanged = false;
               Tasks.Delete(TasksViewModel.SelectedItemTasks);
               this.Display(); 
-          }
       }
       private void ChangeMethod()
       {

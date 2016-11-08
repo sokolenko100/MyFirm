@@ -91,12 +91,8 @@ namespace MyFirm.ViewModelComponent
       }
       private void DeleteMethod()
       {
-          if (EmployeeViewModel.SelectedItemEmployees != null)
-          {
-              IsChanged = false;
               Employees.Delete(EmployeeViewModel.SelectedItemEmployees);
               this.Display();
-          }
       }
       // Change  Employee
       private void ChangeMethod()

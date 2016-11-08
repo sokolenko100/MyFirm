@@ -85,7 +85,6 @@ namespace MyFirm.ViewModelComponent
       }
       private void DeleteMethod()
       {
-          IsChanged = false;
           Customers.Delete(CustomersViewModel.SelectedItemCustomers);
           this.Display();
       }

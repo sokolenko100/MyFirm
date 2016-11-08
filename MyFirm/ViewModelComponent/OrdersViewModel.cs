@@ -84,7 +84,6 @@ namespace MyFirm.ViewModelComponent
       }
       private void DeleteMethod()
       {
-          IsChanged = false;
           Orders.Delete(OrdersViewModel.SelectedItemOrders);
           this.Display();
       }

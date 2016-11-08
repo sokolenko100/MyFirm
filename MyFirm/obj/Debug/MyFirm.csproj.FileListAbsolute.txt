@@ -141,3 +141,6 @@ C:\Users\Администратор\Desktop\Git\MyFirm\MyFirm\MyFirm\obj\Debug\V
 C:\Users\Администратор\Desktop\Git\MyFirm\MyFirm\MyFirm\obj\Debug\MyFirm.g.resources
 C:\Users\Администратор\Desktop\Git\MyFirm\MyFirm\MyFirm\obj\Debug\MyFirm.Properties.Resources.resources
 C:\Users\Администратор\Desktop\Git\MyFirm\MyFirm\MyFirm\obj\Debug\MyFirm.csproj.GenerateResource.Cache
+C:\Users\Администратор\Desktop\MyFirm\MyFirm\bin\Debug\MyFirm.exe.config
+C:\Users\Администратор\Desktop\MyFirm\MyFirm\obj\Debug\MyFirm.exe
+C:\Users\Администратор\Desktop\MyFirm\MyFirm\obj\Debug\MyFirm.pdb
